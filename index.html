@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header_section">
+            <div class="title"><h1>~Analyzer.</h1></div>
+    </section>
+
+    <section class="data-body">
+        <div class="data-box">
+            <div class="card" id="word-card">
+                <h3>Word Count</h3>
+                <div class="values">
+                    <h4 id="word-value"></h4>
+                </div>
+            </div>
+
+            <div class="card" id="char-card">
+                <h3>Character Count</h3>
+                <div class="values">
+                    <h4 id="char-value"></h4>
+                </div>
+            </div>
+
+            <div class="card" id="most-repeated-word-card">
+                <h3>Most Repeated Word</h3>
+                <div class="values">
+                    <h4 id="repeated-value"></h4>
+                </div>
+            </div>
+
+            <div class="card" id="rte-card">
+                <h3>Reading Time Est</h3>
+                <div class="values">
+                    <h4 id="rte-value"></h4>
+                </div>
+            </div>
+
+            <div class="card" id="avg-card">
+                <h3>Avg. Word Length</h3>
+                <div class="values">
+                    <h4 id="avg-word-lenght-value"></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="textarea">
+        <textarea name="text-input" id="text-input" placeholder="Enter Text."></textarea>
+        <button onclick="analyze(), btn_animation()" class="submit-btn">Analyze</button>
+    </div>
+
+</body>
+<script src="index.js"></script>
+</html>
