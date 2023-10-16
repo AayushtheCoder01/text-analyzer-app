@@ -44,10 +44,10 @@
                 </div>
             </div>
 
-            <div class="card" id="most-repeated-word-card">
-                <h3>Most Repeated Word</h3>
+            <div class="card" id="sentence-count-card">
+                <h3>Sentences</h3>
                 <div class="values">
-                    <h4 id="repeated-value"></h4>
+                    <h4 id="sentence-count"></h4>
                 </div>
             </div>
 
@@ -64,12 +64,25 @@
                     <h4 id="avg-word-lenght-value"></h4>
                 </div>
             </div>
+
+            <div class="card c" id="most-repeated-word-card">
+                <h3>Most Repeated Word</h3>
+                <div class="values">
+                    <h4 id="repeated-value"></h4>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <div class="textarea">
-        <textarea name="text-input" id="text-input" placeholder="Enter Text."></textarea>
-        <button onclick="analyze(), btn_animation()" class="submit-btn">Analyze</button>
+        <textarea name="text-input" id="text-input" placeholder="Enter Text..."></textarea>
+        <!-- <button onclick="analyze()" class="submit-btn">Analyze</button>
+        <button onclick="clear_text()" class="reset-btn">Reset</button> -->
+    </div>
+    <div class="button-area">
+        <button onclick="analyze()" class="submit-btn">Analyze</button>
+        <button onclick="clear_text()" class="reset-btn">Reset</button>
     </div>
 
 </body>
