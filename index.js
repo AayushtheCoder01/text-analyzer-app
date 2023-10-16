@@ -1,6 +1,20 @@
 let data_body = document.querySelector(".data-body");
     data_body.style.display="none";
 
+    // function for the reseting the textarea
+    function clear_text() {
+        let input_field = document.querySelector("#text-input")
+        input_field.value = ""
+    }
+
+    // adding event listeners to the enter button for the execution.
+    document.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            analyze()
+        }
+    })
+
+
     function analyze(){
         let text_val = document.querySelector("#text-input").value;
 
@@ -20,7 +34,10 @@ let data_body = document.querySelector(".data-body");
         let most_repeated_word = most_frequency_counter(text_val);
 
         let repeated_value= document.querySelector("#repeated-value");
-        repeated_value.innerHTML = most_repeated_word;
+        if (most_repeated_word.length>7){
+            repeated_value.style.fontSize = "1.4rem"
+        }
+        repeated_value.innerText = `' ${most_repeated_word.max_frequency_word} ' : ${most_repeated_word.max_frequency} times`;
 
 
         // avg reading time execution.
@@ -36,12 +53,23 @@ let data_body = document.querySelector(".data-body");
         avg_word_length_value.innerHTML = avg_word_length
 
 
+        // total sentence count execution.
+        let total_sentence = calculate_sentence(text_val)
+        let sentence_count_card = document.querySelector("#sentence-count")
+        
+        sentence_count_card.innerText = total_sentence
+
+
         // Making data visible.
         data_body.style.display="block";
-
-
     }
 
+    // function for sentence calculation.
+    function calculate_sentence(text){
+        text.toLowerCase()
+        let sentences = text.split(/[.?!]+/).length;
+        return sentences - 1
+    }
 
     //function for avg word length.
     function avg_word_length_counter(text) {
@@ -56,21 +84,25 @@ let data_body = document.querySelector(".data-body");
     // function for avg reading time.
     function avg_reading_time_counter(text) {
         let text_split = text.split(" ");
-        let avg_reading_speed = 225;
 
+        let avg_reading_speed = 200;
         let total_words = text_split.length;
+
+        if (text_split.length < 100) {
+            return 0
+        }
 
         return Math.ceil(total_words / avg_reading_speed)
     }
 
     // function for most repeated words.
-    let frequencyCounter = {}
-    let max_frequency = 0
 
     function most_frequency_counter(text) {
-        let max_frequency_word = '';
-        text.toLowerCase()
+        text = text.toLowerCase()
         let text_split = text.split(" ")
+        let frequencyCounter = {}
+        let max_frequency = 0
+        let max_frequency_word = "";
 
         text_split.forEach(word => {
             // creating and changing the values in the object.
@@ -85,13 +117,15 @@ let data_body = document.querySelector(".data-body");
                 max_frequency_word = word
                 max_frequency = frequencyCounter[word]
             }
+        
             // checking if the value is empty.
-            if (text_split == "") {
-                max_frequency_word = "0"
-                return max_frequency_word
-            }
         });
-        return max_frequency_word
+        if (text_split.length == 1) {
+            max_frequency_word = 0
+            return max_frequency_word
+        }else{
+            return {max_frequency_word: max_frequency_word, max_frequency: max_frequency}
+        }
     }
 
     // function for total word count.
