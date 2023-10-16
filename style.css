@@ -17,10 +17,6 @@ body{
 }
 .title{
     color: #2ECC40;
-    /* background: #5540E3;
-    background: linear-gradient(to right, #5540E3 16%, #E618ED 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
     align-items: center;
     font-size: 2.5rem;
     font-family: 'Lato', sans-serif;
@@ -42,15 +38,16 @@ body{
     height: auto;
     background-color: white;
     margin-bottom: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 .data-box{
     height: auto;
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
-    padding-left: 10%;
-    padding-right: 10%;
+    justify-content: center;
+    align-items: center;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
 
@@ -59,50 +56,54 @@ body{
     height: 20vh;
     width: 12rem;
     background-color: #00ff1e18;
-    align-self: center;
     border-radius: 5px 20px 5px 5px;
     margin: 10px;
     padding: 10px;
-    /* display: block; */
-    justify-content: center;
+    text-align: center;
     padding-top: 1.5rem;
     color: #15aa26e3;
+    box-shadow: 0px 1px 5px #15aa2641;
+    transition: ease 0.1s;
+}
+.card:hover{
+    scale: 1.05;
 }
 h3{
     margin: 2px;
+    margin-bottom: 12px;
 }
 h4{
-    font-size: 3rem;
+    font-size: 2.2rem;
 }
 .values{
     display: flex;
     height: 5.5rem;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; 
+    align-items: center; 
 }
-@media(max-width:850px){
-    .data-box{
-        flex-direction: column;
-    }
+@media(max-width:750px){
     .card{
         height: 10rem;
-        width: 75%;
+        width: 10rem;
+    }
+    h4{
+        font-size: 1.2rem;
     }
 }
 @media(max-width:600px){
-    .data-box{
-        flex-direction: column;
-    }
     .card{
-        height: 10rem;
-        width: 75%;
+        height: 8rem;
+        width: 7rem;
+    }
+    h3{
+        font-size: 1rem;
     }
 
 }
 .textarea{
     height: auto;
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,12 +116,15 @@ textarea{
     margin: 1rem;
     border-radius: 5px;
 }
-.submit-btn{
+#repeated-value{
+    font-size: 1.5rem;
+}
+.submit-btn, .reset-btn{
     height: 3rem;
     width: 10rem;
     background-color: #15aa26e3;
     border: 0px;
-    border-radius: 7px;
+    border-radius: 50px;
     color: white;
     font-size: 1rem;
     margin: .5rem;
@@ -140,4 +144,31 @@ textarea{
     outline-color: rgb(255, 255, 255);
     outline-offset: 1px;
     outline-width: 3px;
+}
+@media(min-width:1460px){
+    .c{
+        min-width: 30%;
+    }
+}
+.reset-btn{
+    background-color: rgb(14, 105, 242);
+    width: 10rem;
+}
+.reset-btn:hover{
+    scale: 1.05;
+    box-shadow: 0px 1px 7px #1562aae3;
+    text-shadow: 0px 1px 5px #092e5ce3;
+}
+.reset-btn:active{
+    scale: 0.95;
+    outline-style: solid;
+    outline-color: rgb(255, 255, 255);
+    outline-offset: 1px;
+    outline-width: 3px;
+}
+.button-area{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem;
 }
