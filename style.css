@@ -172,3 +172,22 @@ textarea{
     flex-wrap: wrap;
     margin: 1rem;
 }
+.keywords{
+    margin-top: .5rem;
+    margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.keywords-para{
+    width: auto;
+    padding:8px ;
+    height: auto;
+    font-size: 1.2rem;
+    background-color: #00ff1e18;
+    border-radius: 5px 5px 5px 5px;
+    color: #15aa26e3;
+    box-shadow: 0px 1px 5px #15aa2641;
+    transition: ease 0.1s;
+    margin: 10px;
+}
