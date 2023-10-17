@@ -1,26 +1,45 @@
 let data_body = document.querySelector(".data-body");
 let all_words_data = document.querySelector(".keywords")
+let submit = document.querySelector(".submit-btn")
 var parent;
+var total_word_types = 0
+
+// hiding the data_body for first time.
 data_body.style.display="none";
 
     // function for the reseting the textarea
        function clear_text() {
         let input_field = document.querySelector("#text-input")
         input_field.value = "";
-        data_body.style.display="none";
+        data_body.style.display="none"
         data_body.removeChild(parent)
+        submit.style.display = "block" 
+        total_word_types = 0
     }
+
+    // function for the submit btn
+
+        function execution_confirmation() {
+            var text_val = document.querySelector("#text-input").value;
+            if (text_val.length > 0){
+                total_word_types = 0
+                submit.style.display = "none"
+                analyze()
+            }
+        }
+
 
     // adding event listeners to the enter button for the execution.
     document.addEventListener("keypress", function(e) {
         if (e.key === "Enter") {
-            analyze()
+            execution_confirmation()
         }
     })
 
 
     function analyze(){
-        let text_val = document.querySelector("#text-input").value;
+        var text_val = document.querySelector("#text-input").value;
+        console.log(text_val.length)
 
         // total word count execution.
         let total_words = word_count(text_val);
@@ -62,6 +81,10 @@ data_body.style.display="none";
         let sentence_count_card = document.querySelector("#sentence-count")
         
         sentence_count_card.innerText = total_sentence
+
+        // total unique words count execution.
+        let unique_words_card = document.querySelector("#unique-words-value")
+        unique_words_card.innerText = total_word_types
 
 
         // Making data visible.
@@ -111,32 +134,35 @@ data_body.style.display="none";
         
         text = text.toLowerCase()
         let text_split = text.split(" ")
+        console.log(text_split)
         let max_frequency = 0
         let max_frequency_word = "";
         frequencyCounter = {}
 
         text_split.forEach(word => {
             // creating and changing the values in the object.
-            if (frequencyCounter[word]){
+            if (frequencyCounter[word] && word!="of" && word!="the" && word!="is" && word!="to" && word!="it"){
+
                 frequencyCounter[word]++
+            
             } else{
                 frequencyCounter[word] = 1;
+                total_word_types++
             }
 
+            
             // seprating the most repeated word.
             if (frequencyCounter[word] > max_frequency) {
                 max_frequency_word = word
                 max_frequency = frequencyCounter[word]
             }
-        
             
         });
-
         // displaying the frequency of all words.
         parent = document.createElement("div")
         parent.className = "keywords"
             for (let word in frequencyCounter) {
-            if (frequencyCounter[word] > 5 ){
+            if (frequencyCounter[word] >= 3 ){
                 if( word == "–" || word == "0" || word == " "){
                     continue;
                 }
@@ -153,7 +179,7 @@ data_body.style.display="none";
         
 
         // checking if the value is empty.
-        if (text_split.length == 1) {
+        if (text_split.length == 1 && max_frequency_word === undefined) {
             max_frequency_word = 0
             return max_frequency_word
         }else{
