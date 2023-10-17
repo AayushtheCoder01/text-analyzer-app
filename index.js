@@ -1,10 +1,14 @@
 let data_body = document.querySelector(".data-body");
-    data_body.style.display="none";
+let all_words_data = document.querySelector(".keywords")
+var parent;
+data_body.style.display="none";
 
     // function for the reseting the textarea
-    function clear_text() {
+       function clear_text() {
         let input_field = document.querySelector("#text-input")
-        input_field.value = ""
+        input_field.value = "";
+        data_body.style.display="none";
+        data_body.removeChild(parent)
     }
 
     // adding event listeners to the enter button for the execution.
@@ -61,8 +65,12 @@ let data_body = document.querySelector(".data-body");
 
 
         // Making data visible.
-        data_body.style.display="block";
+        if(text_val != ""){
+            data_body.style.display="block";
+        }
+        
     }
+
 
     // function for sentence calculation.
     function calculate_sentence(text){
@@ -97,12 +105,15 @@ let data_body = document.querySelector(".data-body");
 
     // function for most repeated words.
 
+    let frequencyCounter = {}
+
     function most_frequency_counter(text) {
+        
         text = text.toLowerCase()
         let text_split = text.split(" ")
-        let frequencyCounter = {}
         let max_frequency = 0
         let max_frequency_word = "";
+        frequencyCounter = {}
 
         text_split.forEach(word => {
             // creating and changing the values in the object.
@@ -118,8 +129,30 @@ let data_body = document.querySelector(".data-body");
                 max_frequency = frequencyCounter[word]
             }
         
-            // checking if the value is empty.
+            
         });
+
+        // displaying the frequency of all words.
+        parent = document.createElement("div")
+        parent.className = "keywords"
+            for (let word in frequencyCounter) {
+            if (frequencyCounter[word] > 5 ){
+                if( word == "–" || word == "0" || word == " "){
+                    continue;
+                }
+                let element = document.createElement('p')
+                element.className="keywords-para"
+                element.id = 'data-p'
+                element.innerText = `${word} : ${frequencyCounter[word]}`
+                parent.appendChild(element)
+            }
+            data_body.appendChild(parent)
+        } 
+        
+            
+        
+
+        // checking if the value is empty.
         if (text_split.length == 1) {
             max_frequency_word = 0
             return max_frequency_word
