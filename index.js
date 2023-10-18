@@ -4,18 +4,25 @@ let submit = document.querySelector(".submit-btn")
 var max_frequency;
 var max_frequency_word;
 var parent;
+var parent_2
 var total_word_types = 0
 var command = "no"
+
 
 // hiding the data_body for first time.
 data_body.style.display="none";
 
     // function for the reseting the textarea
        function clear_text() {
+        let frequent_words = document.querySelector(".frequent-words")
+        frequent_words.removeChild(parent)
+
+        let keywords_data = document.querySelector(".keywords-data")
+        keywords_data.removeChild(parent_2)
+        
         let input_field = document.querySelector("#text-input")
         input_field.value = "";
         data_body.style.display="none"
-        data_body.removeChild(parent)
         submit.style.display = "block" 
         total_word_types = 0
     }
@@ -25,6 +32,7 @@ data_body.style.display="none";
         function execution_confirmation() {
             var text_val = document.querySelector("#text-input").value;
             if (text_val.length > 0){
+                data_body.style.display="flex"
                 total_word_types = 0
                 submit.style.display = "none"
                 analyze()
@@ -41,7 +49,7 @@ data_body.style.display="none";
 
 
     function analyze(){
-        var text_val = document.querySelector("#text-input").value;
+        text_val = document.querySelector("#text-input").value;
 
         // total word count execution.
         let total_words = word_count(text_val);
@@ -182,7 +190,7 @@ data_body.style.display="none";
         let one_percent = Math.ceil(words_len*0.01)
         console.log(one_percent)
 
-        let parent_2 = document.createElement("div")
+        parent_2 = document.createElement("div")
         parent_2.className = "keywords"
         if (words_len >= 200) {
             for(let word in frequencyCounter) {
@@ -235,4 +243,3 @@ data_body.style.display="none";
         }
         return total_char
     }
-
