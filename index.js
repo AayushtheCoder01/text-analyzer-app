@@ -1,8 +1,11 @@
 let data_body = document.querySelector(".data-body");
 let all_words_data = document.querySelector(".keywords")
 let submit = document.querySelector(".submit-btn")
+var max_frequency;
+var max_frequency_word;
 var parent;
 var total_word_types = 0
+var command = "no"
 
 // hiding the data_body for first time.
 data_body.style.display="none";
@@ -39,7 +42,6 @@ data_body.style.display="none";
 
     function analyze(){
         var text_val = document.querySelector("#text-input").value;
-        console.log(text_val.length)
 
         // total word count execution.
         let total_words = word_count(text_val);
@@ -130,13 +132,13 @@ data_body.style.display="none";
 
     let frequencyCounter = {}
 
-    function most_frequency_counter(text) {
+    function most_frequency_counter(text, command) {
         
         text = text.toLowerCase()
         let text_split = text.split(" ")
-        console.log(text_split)
-        let max_frequency = 0
-        let max_frequency_word = "";
+        let words_len = text_split.length
+        var max_frequency = 0
+        var max_frequency_word = "";
         frequencyCounter = {}
 
         text_split.forEach(word => {
@@ -158,12 +160,12 @@ data_body.style.display="none";
             }
             
         });
-        // displaying the frequency of all words.
+        // displaying the frequency of frequent words.
         parent = document.createElement("div")
         parent.className = "keywords"
             for (let word in frequencyCounter) {
             if (frequencyCounter[word] >= 3 ){
-                if( word == "–" || word == "0" || word == " "){
+                if( word == "–" || word == "0" || word == " " || word == "-"){
                     continue;
                 }
                 let element = document.createElement('p')
@@ -172,11 +174,33 @@ data_body.style.display="none";
                 element.innerText = `${word} : ${frequencyCounter[word]}`
                 parent.appendChild(element)
             }
-            data_body.appendChild(parent)
+            let data_body_parent = document.querySelector(".frequent-words")
+            data_body_parent.appendChild(parent)
         } 
         
-            
+        // displaying the keywords.
+        let one_percent = Math.ceil(words_len*0.01)
+        console.log(one_percent)
+
+        let parent_2 = document.createElement("div")
+        parent_2.className = "keywords"
+        if (words_len >= 200) {
+            for(let word in frequencyCounter) {
+            if (frequencyCounter[word] > one_percent) {
+                let new_element = document.createElement('p')
+                new_element.className = "keywords-para"
+                new_element.innerText = `${word} : ${frequencyCounter[word]}`
+                parent_2.appendChild(new_element)
+            }else{
+                continue
+            }
+        }
+    }
         
+        let data_body_parent_2 = document.querySelector(".keywords-data")
+        data_body_parent_2.appendChild(parent_2)
+
+
 
         // checking if the value is empty.
         if (text_split.length == 1 && max_frequency_word === undefined) {
@@ -211,3 +235,4 @@ data_body.style.display="none";
         }
         return total_char
     }
+
