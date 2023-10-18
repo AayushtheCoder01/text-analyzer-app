@@ -68,6 +68,11 @@ body{
 .card:hover{
     scale: 1.05;
 }
+h2{
+    text-align: center;
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+}
 h3{
     margin: 2px;
     margin-bottom: 12px;
