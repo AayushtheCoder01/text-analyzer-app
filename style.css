@@ -40,6 +40,11 @@ body{
     margin-bottom: 2rem;
     padding-left: 10%;
     padding-right: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
 }
 .data-box{
     height: auto;
@@ -50,6 +55,7 @@ body{
     align-items: center;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
+    margin-bottom: 1.5rem;
 
 }
 .card{
