@@ -194,7 +194,7 @@ data_body.style.display="none";
         parent_2.className = "keywords"
         if (words_len >= 200) {
             for(let word in frequencyCounter) {
-            if (frequencyCounter[word] > one_percent) {
+            if (frequencyCounter[word] > one_percent || word != " " || word != "") {
                 let new_element = document.createElement('p')
                 new_element.className = "keywords-para"
                 new_element.innerText = `${word} : ${frequencyCounter[word]}`
